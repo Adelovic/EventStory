@@ -25,17 +25,16 @@ if ($userLogged)
               <!-- LEFT CONTENT -->
               <ul class="nav navbar-nav">
                 <li><a href="#">Accueil</a></li>
+                <li class="dropdown">
+                  <form class="navbar-search" role="search" method="post" action="/EventStory/Search/">
+                    <div class="input-group">
+                      <input type="text" class="form-control dropdown-toggle" data-toggle="dropdown" placeholder="Recherche" name="search" id="search">
+                    </div>
+                  </form>
+                  <ul id="search-res" class="dropdown-menu">
+                  </ul>
+                </li> 
               </ul>
-
-              
-              <form class="navbar-form" role="search" method="post" action="/EventStory/Search/">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Rechercher" name="search" id="search">
-                  <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                  </div>
-                </div>
-              </form>
             </div>
           </div>
           <div class="col-md-2">
@@ -60,11 +59,9 @@ if ($userLogged)
                         <li class="divider"></li>
                         <li>
                             <div class="navbar-login navbar-login-session">
-
-                                        <p>
-                                            <a href="/EventStory/logout" class="btn btn-danger btn-block">Déconnexion</a>
-                                        </p>
-
+                              <p>
+                                <a href="/EventStory/logout" class="btn btn-danger btn-block">Déconnexion</a>
+                              </p>
                             </div>
                         </li>
                     </ul>
@@ -109,7 +106,7 @@ else
 
             <div class="collapse navbar-collapse" id="navbar">
               <!-- RIGHT CONTENT -->
-              <form class="navbar-form navbar-right" method="post" action="/EventStory/Users/login">
+              <form class="navbar-form navbar-right" method="post" action="Users/login">
                 <div class="form-group">
                   <input type="text" class="form-control" placeholder="Identifiant" name=email>
                   <input type="password" class="form-control" placeholder="Mot de passe" name=password>

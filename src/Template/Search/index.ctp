@@ -1,14 +1,12 @@
-<?php foreach($queryResultUsers as $user) {
-  echo('<p> Utilisateurs :');
-  echo($user['first_name']);
-  echo(' ');
-  echo($user['last_name']);
-  echo('</p>');
+<?php 
+foreach($queryResultUsers as $user) {
+  echo '<li><a href="">';
+  echo $user['first_name'] . " " . $user['last_name'];
+  echo '</a></li>';
 }
+echo "<li role='separator' class='divider'></li>";
 foreach($queryResultEvents as $event) {
-  echo('<p> Evenements :');
-  echo($event['titre']);
-  echo(' ');
-  echo($event['description']);
-  echo('</p>');
+  echo '<li><a href="">';
+    echo $event['title'];
+  echo '</a></li>';
 } ?>

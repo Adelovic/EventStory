@@ -6,16 +6,17 @@
     $(function () {
         $("#search").bind('input', function () {
             $.ajax({
-                url: "/EventStory/Search/",
+                url: "Search/",
                 data: {
                     search: $("#search").val()
                 },
                 dataType: 'html',
                 type: 'post',
                 success: function (html) {
-                    $("#section").html(html);
+                    $("#search-res").html(html);
                 }
             })
+
         });
     })
 </script>
