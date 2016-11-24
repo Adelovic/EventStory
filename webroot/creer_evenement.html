@@ -1,0 +1,253 @@
+<!DOCTYPE HTML>
+ <head>
+  <!-- META DATA -->
+  <meta charset="UTF-8">
+  <meta name="description" content="155 characters of message matching text with a call to action goes here">
+  <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+  <meta name="author" content="Hege Refsnes">
+
+  <title>Page Title</title>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+  <script type="text/javascript" src="./js/bootstrap.js"></script>
+  <script type="text/javascript" src="./js/eventstory.js"></script>
+
+  <!-- STYLE -->
+  <link rel="stylesheet" href="./css/bootstrap.css">
+  <link href="./css/style.css" rel="stylesheet">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
+ </head>
+
+ <body>
+
+  <!-- INCLUDES/NAV.HTML ############################## -->
+  <div id="nav-wrapper">
+    <div id="nav" class="navbar-fixed-top navbar navbar-default navbar-inner">
+
+      <div class="container header">
+        <div class="row">
+          <div class="col-md-12">
+            <img class="headerlogo" alt="" src="./assets/header.png"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="container colorize">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+
+            <!-- BAR CONTENTS -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">EventStory</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <!-- LEFT CONTENT -->
+              <ul class="nav navbar-nav">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-asterisk"></span> Menu déroulant</a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#"><span class="glyphicon glyphicon-asterisk"></span> TITRE</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#" style="font-weight:300"><span class="glyphicon glyphicon-asterisk"></span> Item1</a></li>
+                    <li><a href="#" style="font-weight:300"><span class="glyphicon glyphicon-asterisk"></span> Item2</a></li>
+                    <li><a href="#" style="font-weight:300"><span class="glyphicon glyphicon-asterisk"></span> Item3</a></li>
+                  </ul>
+                </li>
+                <li><a href="#"><span class="glyphicon glyphicon-asterisk"></span> Item1</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-asterisk"></span> Item2</a></li>
+              </ul>
+
+              <!-- RIGHT CONTENT -->
+              <form class="navbar-form navbar-right">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Login">
+                  <input type="password" class="form-control" placeholder="Mot de passe">
+                </div>
+                <button type="submit" class="btn btn-default">Se connecter</button>
+              </form>
+            </div>
+          </div> <!-- col -->
+        </div> <!-- row -->
+      </div> <!-- container -->
+    </div> <!-- nav -->
+  </div> <!-- wrapper -->
+
+
+
+  <div class="container body"><hr>
+    <div class="row" style="margin-top: 180px;">
+      <div class="col-md-6 col-md-offset-1">
+        <div class="page-header">
+          <h1>Nouvel évenement</h1>
+        </div>
+
+
+          <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+
+            <div class="form-group">
+              <label class="col-md-3 control-label">Titre </label>
+              <div class="col-md-6 inputGroupContainer">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input  name="first_name" placeholder="Titre" class="form-control"  type="text">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label">Image</label>
+                  <div class="col-md-6 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+                      <div class="input-group image-preview">
+                            <input type="text" placeholder = " Choisir un fichier" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                            <span class="input-group-btn">
+                                <!-- image-preview-clear button -->
+                                <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                    <span class="glyphicon glyphicon-remove"></span> Clear
+                                </button>
+                                <!-- image-preview-input -->
+                                <div class="btn btn-default image-preview-input">
+                                    <span class="glyphicon glyphicon-folder-open"></span>
+                                    <span class="image-preview-input-title">Parcourir</span>
+                                    <input  type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/>
+                                </div>
+                            </span>
+                        </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Adresse</label>
+                  <div class="col-md-6 inputGroupContainer">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                    <input name="address" placeholder="Adresse" class="form-control" type="text">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">Date</label>
+                <div class="col-md-6 inputGroupContainer">
+                    <div class="input-group">
+                      <div class='input-group date' id='datetimepicker1'>
+                          <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                          <input type='text' class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Description</label>
+                    <div class="col-md-6 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                          <textarea class="form-control" name="comment" placeholder="Description"></textarea>
+                  </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Invitations</label>
+                  <div class="col-md-6 selectContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>
+                      <select name="invitations" class="form-control selectpicker" >
+                        <option value=" " >Consulter</option>
+                        <option>Adel</option>
+                        <option>Anthony</option>
+                        <option >Alice</option>
+                        <option >Christo</option>
+                        <option >Eva</option>
+                        <option >Paul</option>
+                        <option >Yassine</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-md-3 control-label"> Invitation </label>
+                  <div class="col-md-6">
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="invitation" value="me" /> Seulement moi
+                      </label>
+                      <label>
+                        <input type="radio" name="invitation" value="everyone" /> Tout le monde
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                <label class="col-md-3 control-label"> Visibilité </label>
+                  <div class="col-md-6">
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="visibilité" value="me" /> Invités et moi
+                      </label>
+                      <label>
+                        <input type="radio" name="visibilité" value="everyone" /> Tout le monde
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-md-3 control-label"></label>
+                  <div class="col-md-6 ">
+                    <button type="submit" class="btn btn-primary" >Terminer </button>
+                  </div>
+                </div>
+
+              </form>
+
+  		  <hr class="articlebreak">
+  		</div>
+
+  		<div class="col-md-4">
+        <div class="well bs-sidebar" id="sidebar">
+  			  <img class="img-circle img-responsive pp" src="assets/pp.jpg" alt="" />
+          <h2 style="text-align: center; color: #4D667C"><a href="#">Christopher GROSSAIN</a></h2>
+          <h4 style="text-align: center">Etudiant en informatique</h4>
+          <p style="text-align:center;">
+            <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">Google+</a>
+          </p>
+          <hr>
+          <ul class="nav nav-pills" role="tablist">
+            <li class=" pull-left"><a href="#">Paramètres</a></li>
+            <li class="pull-right"><a href="#">Messages <span class="badge">3</span></a></li>
+          </ul>
+  		  </div>
+    	</div>
+
+    </div>
+    </div>
+
+
+
+  <!-- INCLUDES/FOOTER.HTML ############################## -->
+  <div class="container footer">
+    <div class="row">
+      <div class="col-md-12">
+        <p>
+          Footer
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

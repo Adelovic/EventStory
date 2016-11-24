@@ -1,0 +1,298 @@
+/*************** REMOVE ALL BORDER RADIUS FROM BOOTSTRAP ***************/
+* 
+{
+  border-radius: 0 !important;
+}
+
+/************** NAVBAR COLORS **************/
+.navbar {
+   background-color: transparent;
+   background: transparent;
+   color: white;
+   opacity: 100;
+   border: 0px;
+   border-radius: 0px;
+   z-index:9999;
+   font-family: "Arial", Sans-Serif;
+}
+.colorize {
+	background-color: #4D667C;
+	background: #4D667C;
+}
+
+.log_btn
+{
+	width:100px;
+	border:2px solid #fff;
+	text-align:center;
+	padding:8px;
+	border-radius:3px;
+	margin:20px auto;
+	color:#fff;
+	border-radius: 5px !important;
+}
+
+/******************** POST BODY + PAGE SIDE COLOR  ********************/
+.body {
+	background-color: #FFF8F6;
+	color: #3B3632;
+	font-family: "Arial", "Georgia", Sans-Serif;
+}
+
+/* FOOTER  ****************************************** */
+.footer {
+	background-color: #193441;
+	color: white;
+}
+
+.footer-copy {
+	padding-bottom: 10px;
+	padding-top: -5px;
+}
+
+/* HR TAGS (ARTICLE SEP LINES)  ********************* */
+hr.articlebreak {
+	height:0px;
+	margin-top: 5px;
+	padding-top: 5px;
+	border-bottom: 1px dotted #111;
+}
+hr.clearbreak {
+	height:0px;
+	margin-top: 3px;
+	border-bottom: 0px;
+	color: transparent;
+	opacity: 0;
+}
+
+
+/* NAV CODE ****************************************** */
+
+#nav > .navbar-inner {
+	border-left: 0;
+	border-right: 0;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-o-border-radius: 0;
+}
+
+.navbar-default .navbar-brand {
+	color: white;
+	font-weight: 700;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: white;
+	font-weight: 300;
+}
+
+.dropdown-menu > li > a {
+	font-weight: bold;
+}
+
+#nav.affix {
+    position: fixed;
+    top: 0;
+    width: 100%
+}
+
+/* AUTO DROPDOWN FIX  ******************************************* */
+@media (min-width:769px) {
+	.dropdown:hover .dropdown-menu 
+	{
+		display: block;
+	}
+}
+
+/* CAROUSEL ************************************ */
+
+@media (min-width:992px) {
+	.container {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+}
+
+@media (max-width:991px) {
+	.carousel {
+		display: none;
+	}
+}
+
+.carousel, .carousel-inner
+{
+	height: 450px;
+}
+
+ .carousel-inner .item, .carousel-inner .item img
+ {
+ 	width: 100%;
+ 	height: 100%;
+ }
+
+/******* FIX FOR FIREFOX *******/
+@-moz-document url-prefix() {
+	.carousel {
+		border: 1px solid gray;
+	}
+}
+
+
+/* MINI POST CONTENT ******************************************** */
+.postbox {
+	min-height: 100px;
+}
+
+.postimg {
+	float:left;
+	margin-right:10px;
+	width: 100px;
+}
+
+.posthl {
+	padding:0 0 2px;
+	margin:0;
+}
+
+/* SIDEBAR  **************************************** */
+.bs-sidebar.affix {
+	top: 42px;
+}
+
+@media (min-width: 768px) {
+  .bs-sidebar {
+    background-color: #D8D8D8;
+	min-width: 303px;
+	max-width: 304px;
+  }
+
+  .bs-sidebar.affix {
+	min-width: 304px;
+	max-width: 305px;
+	top: 77px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .bs-sidebar {
+    background-color: #D8D8D8;
+	min-width: 370px;
+	max-width: 371px;
+  }
+  .bs-sidebar.affix {
+	min-width: 370px;
+	max-width: 371px;
+  }
+}
+
+@media (max-width: 992px) {
+  .bs-sidebar.affix {
+	display: none;
+  }
+}
+
+
+/* NAV HOVER COLORS *********************************** */
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-brand:hover {
+	color: #CEE3F6;
+}
+
+.navbar-default .navbar-toggle {
+	background-color: #243849;
+	border: 0px;
+}
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #909DA8;
+}
+
+.navbar-default .navbar-nav > .dropdown.open > a:hover, 
+.navbar-default .navbar-nav > .dropdown.open > a:focus,
+.navbar-default .navbar-nav > .dropdown > a:hover 
+{
+    color: black;
+    background-color: white;
+}
+
+.navbar-default .navbar-nav > .dropdown > a
+{
+	color: white;
+}
+
+/* NAV DROPDOWN COLORS ***************************** */
+.navbar-default .navbar-nav .dropdown .dropdown-menu > li > a,.navbar-default .navbar-nav .dropdown .dropdown-menu 
+{
+	background-color: white;
+	color:#000;
+}
+
+
+
+.pp {
+	width: 100px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+.event {
+	width: 100%;
+	max-height: 250px;
+	min-height: 250px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+
+/* NAVBAR **********************************/
+
+
+.navbar-login
+{
+    width: 305px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.navbar-login-session
+{
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.container.body > .row
+{
+	margin-top: 100px;
+}
+
+/*********** REGISTER FORM **********/
+.container.body
+{
+	width: 1080px;
+}
+
+#register-button
+{
+	font-size: 16px;
+}
+/*********** STICKY FOOTER **********/
+
+html, body
+{
+	background-color: #FFF8F6;
+	height: 100%;
+}
+
+.footer, #push
+{
+	height: 60px;
+	line-height: 60px;
+}
+
+#wrap
+{
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -60px;	
+}
