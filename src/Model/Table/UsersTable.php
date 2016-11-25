@@ -75,6 +75,9 @@ class UsersTable extends Table
             ->integer('score')
             ->notEmpty('score');
 
+        $validator
+            ->notEmpty('avatar');
+
         return $validator;
     }
 

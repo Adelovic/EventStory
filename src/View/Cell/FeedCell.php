@@ -27,7 +27,8 @@ class FeedCell extends Cell
     public function display($user)
     {
       $this->loadModel('Events');
-      $cityEvents = $this->Events->find('city', ['city' => $user['city']]);
-      $this->set('cityEvents', $cityEvents);
+      $events = $this->Events->find('all');
+      //$cityEvents = $this->Events->find('all');('city', ['city' => $user['city']]);
+      $this->set('events', $events);
     }
 }

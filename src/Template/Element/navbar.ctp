@@ -8,7 +8,7 @@ if ($userLogged)
 
       <div class="container colorize">
         <div class="row">
-          <div class="col-md-8 col-md-offset-1">
+          <div class="col-md-7 col-md-offset-1">
 
             <!-- BAR CONTENTS -->
             <div class="navbar-header">
@@ -38,9 +38,10 @@ if ($userLogged)
               </form>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
           <!-- RIGHT CONTENT -->
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Créer un événement</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span> 
@@ -62,7 +63,7 @@ if ($userLogged)
                             <div class="navbar-login navbar-login-session">
 
                                         <p>
-                                            <a href="/EventStory/logout" class="btn btn-danger btn-block">Déconnexion</a>
+                                            <a href="Users/logout" class="btn btn-danger btn-block">Déconnexion</a>
                                         </p>
 
                             </div>
@@ -109,7 +110,7 @@ else
 
             <div class="collapse navbar-collapse" id="navbar">
               <!-- RIGHT CONTENT -->
-              <form class="navbar-form navbar-right" method="post" action="/EventStory/Users/login">
+              <form class="navbar-form navbar-right" method="post" action="Users/login">
                 <div class="form-group">
                   <input type="text" class="form-control" placeholder="Identifiant" name=email>
                   <input type="password" class="form-control" placeholder="Mot de passe" name=password>
