@@ -8,7 +8,7 @@ if ($userLogged)
 
       <div class="container colorize">
         <div class="row">
-          <div class="col-md-8 col-md-offset-1">
+          <div class="col-md-7 col-md-offset-1">
 
             <!-- BAR CONTENTS -->
             <div class="navbar-header">
@@ -37,9 +37,10 @@ if ($userLogged)
               </ul>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
           <!-- RIGHT CONTENT -->
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Créer un événement</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span> 
@@ -59,9 +60,9 @@ if ($userLogged)
                         <li class="divider"></li>
                         <li>
                             <div class="navbar-login navbar-login-session">
-                              <p>
-                                <a href="/EventStory/logout" class="btn btn-danger btn-block">Déconnexion</a>
-                              </p>
+                                        <p>
+                                            <a href="Users/logout" class="btn btn-danger btn-block">Déconnexion</a>
+                                        </p>
                             </div>
                         </li>
                     </ul>

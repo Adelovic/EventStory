@@ -13,7 +13,7 @@ class UsersController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['login', 'add']);
+        $this->Auth->allow(['login', 'add', 'createEvenement']);
     }
 
     /**
@@ -84,6 +84,11 @@ class UsersController extends AppController
         $this->Flash->success('Vous êtes maintenant déconnecté.');
 
         return $this->redirect($this->Auth->logout());
+    }
+
+    public function createEvenement()
+    {
+        $this->set('user', $this->Auth->user());
     }
 
     public function beforeFilter(Event $event)

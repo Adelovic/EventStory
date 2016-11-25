@@ -1,12 +1,12 @@
-  <div class="col-md-6 col-md-offset-1">
-      <div class="page-header">
-        <h1>Evenements <span class="label label-default"><?=count($cityEvents)?></span></h1>
-      </div>
-      <hr class="clearbreak">
+<div class="col-md-6 col-md-offset-1">
+  <div class="page-header">
+    <h1>Événements <span class="label label-default"><?=count($events)?></span></h1>
+  </div>
+  <hr class="clearbreak">
       
-<?php foreach ($cityEvents as $event) { ?>
+<?php foreach ($events as $event) { ?>
       <div class="postbox">
-        <img src="./assets/300x300.png" class="postimg"/>
+        <?= $this->Html->image($event['image'], ['alt' => 'Image de ' . $event['title'], 'class' => 'postimg']); ?>
         <h3 class="posthl"><?= $event['title']?></h3>
         <p><?= $event['description']?></p>
       </div>
