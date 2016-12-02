@@ -24,11 +24,11 @@ if ($userLogged)
             <div class="collapse navbar-collapse" id="navbar">
               <!-- LEFT CONTENT -->
               <ul class="nav navbar-nav">
-                <li><a href="#">Accueil</a></li>
+                <li><?php echo $this->html->link('Accueil', array('controller' => 'Users', 'action' => 'index')); ?></li>
                 <li class="dropdown">
-                  <form class="navbar-search" role="search" method="post" action="/EventStory/Search/">
+                    <form class="navbar-search" role="search" method="post" action="EventStory/Search/"> 
                     <div class="input-group">
-                      <input type="text" class="form-control dropdown-toggle" data-toggle="dropdown" placeholder="Recherche" name="search" id="search">
+                      <input type="text" class="form-control dropdown-toggle" data-toggle="dropdown" placeholder="Rechercher" name="search" id="search">
                     </div>
                   </form>
                   <ul id="search-res" class="dropdown-menu">
@@ -40,7 +40,7 @@ if ($userLogged)
           <div class="col-md-3">
           <!-- RIGHT CONTENT -->
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Créer un événement</a></li>
+                <li><?php echo $this->html->link('Créer un évenement', array('controller' => 'Users', 'action' => 'createEvenement')); ?></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span> 
@@ -60,9 +60,9 @@ if ($userLogged)
                         <li class="divider"></li>
                         <li>
                             <div class="navbar-login navbar-login-session">
-                                        <p>
-                                            <a href="Users/logout" class="btn btn-danger btn-block">Déconnexion</a>
-                                        </p>
+                              <p>
+                                <?php echo $this->html->link('Déconnexion', array('controller' => 'Users', 'action' => 'logout'), array('class' => 'btn btn-danger btn-block')); ?>
+                              </p>
                             </div>
                         </li>
                     </ul>

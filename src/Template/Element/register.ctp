@@ -1,5 +1,5 @@
 
-<form class="well form-horizontal" method="post" action="/Users/add">
+<form class="well form-horizontal" method="post" action="Users/add">
 	<h3>Inscription</h3><hr>
 	<div class="form-group">
 		<div class="col-md-12 inputGroupContainer">
