@@ -1,59 +1,39 @@
 <?php
-
 namespace App\Controller;
 
+use App\Controller\AppController;
+
 /**
- * Events Controller.
+ * Events Controller
  *
  * @property \App\Model\Table\EventsTable $Events
  */
 class EventsController extends AppController
 {
-    /**
-     * Index method.
-     *
-     * @return \Cake\Network\Response|null
-     */
-    public function index()
-    {
-        $events = $this->paginate($this->Events);
-
-        $this->set('user', $this->Auth->user());
-    }
-
-    public function initialize()
-    {
-        parent::initialize();
-        $this->Auth->allow(['display']);
-    }
 
     /**
-     * View method.
+     * View method
      *
-     * @param string|null $id Event id
-     *
+     * @param string|null $id Event id.
      * @return \Cake\Network\Response|null
-     *
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $event = $this->Events->get($id, [
-            'contain' => [],
-        ]);
-
+        $event = $this->Events->get($id);
+        $this->loadModel('Users');
+        $creator = $this->Users->get($event['creator_user']);
+        $this->loadModel('Participations');
+        $participates = $this->Participations->exists(['user' => $this->Auth->user()['id'], 'event' => $event['id']]);
         $this->set('event', $event);
-        $this->set('_serialize', ['event']);
-    }
-
-    public function viewCityList() {
-
+        $this->set('creator', $creator);
+        $this->set('participates', $participates);
     }
 
     /**
-     * Add method.
+     * Add method
      *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise
+     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
     public function add()
     {
@@ -73,18 +53,16 @@ class EventsController extends AppController
     }
 
     /**
-     * Edit method.
+     * Edit method
      *
-     * @param string|null $id Event id
-     *
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise
-     *
-     * @throws \Cake\Network\Exception\NotFoundException When record not found
+     * @param string|null $id Event id.
+     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
         $event = $this->Events->get($id, [
-            'contain' => [],
+            'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $event = $this->Events->patchEntity($event, $this->request->data);
@@ -101,13 +79,11 @@ class EventsController extends AppController
     }
 
     /**
-     * Delete method.
+     * Delete method
      *
-     * @param string|null $id Event id
-     *
-     * @return \Cake\Network\Response|null Redirects to index
-     *
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found
+     * @param string|null $id Event id.
+     * @return \Cake\Network\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {

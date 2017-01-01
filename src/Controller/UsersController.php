@@ -13,7 +13,7 @@ class UsersController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['login', 'add', 'createEvenement']);
+        $this->Auth->allow(['login', 'add']);
     }
 
     /**
@@ -23,7 +23,12 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $this->set('user', $this->Auth->user());
+      $this->loadModel('InvitesFriend');
+      $this->loadModel('InvitesEvent');
+      $eventInvites = $this->InvitesEvent->find('invite', ['user' => $this->Auth->user()['id']])->toArray();
+      $friendshipInvites = $this->InvitesFriend->find('invite', ['user' => $this->Auth->user()['id']])->toArray();
+      $invites = ['friends' => $friendshipInvites, 'events' => $eventInvites];
+      $this->set('invites', $invites);
     }
     /**
      * View method.
@@ -36,12 +41,20 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
-        $user = $this->Users->get($id, [
-            'contain' => [],
-        ]);
-
-        $this->set('user', $user);
-        $this->set('_serialize', ['user']);
+        $userShown = $this->Users->get($id);
+        $this->loadModel('InvitesFriend');
+        $alreadyInvited = $this->InvitesFriend->exists(['user_inviting' => $this->Auth->user()['id'], 'user_invited' => $userShown['id']]);
+        $waitingForAproval = $this->InvitesFriend->exists(['user_inviting' => $userShown['id'], 'user_invited' => $this->Auth->user()['id']]);
+        if($alreadyInvited) {
+          $friendshipState = 'alreadyInvited';
+        }
+        else if ($waitingForAproval) {
+          $friendshipState = 'waitingForAproval';
+        } else {
+          $friendshipState = 'nothing';
+        }
+        $this->set('userShown', $userShown);
+        $this->set('friendshipState', $friendshipState);
     }
 
     /**
@@ -84,23 +97,6 @@ class UsersController extends AppController
         $this->Flash->success('Vous êtes maintenant déconnecté.');
 
         return $this->redirect($this->Auth->logout());
-    }
-
-    public function createEvenement()
-    {
-        $this->set('user', $this->Auth->user());
-    }
-
-    public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter($event);
-
-        // Table utilisée pour l'authentification
-        $this->Auth->config('authenticate', [
-          'Form' => [
-             'userModel' => 'Users',
-         ]
-        ]);
     }
 
 }

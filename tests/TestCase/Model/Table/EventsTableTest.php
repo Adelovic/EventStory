@@ -70,4 +70,24 @@ class EventsTableTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
+    /**
+     * Test findCity method
+     *
+     * @return void
+     */
+    public function testFindCity()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test findTitle method
+     *
+     * @return void
+     */
+    public function testFindTitle()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
 }

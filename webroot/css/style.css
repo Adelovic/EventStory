@@ -6,8 +6,7 @@
 
 /************** NAVBAR COLORS **************/
 .navbar {
-   background-color: transparent;
-   background: transparent;
+   background-color: #243849;
    color: white;
    opacity: 100;
    border: 0px;
@@ -331,4 +330,19 @@ html, body
 }
 .image-preview-input-title {
     margin-left:2px;
+}
+
+.service-box {
+	text-align: center;
+}
+
+.service-box i {
+	font-size: 4em;
+	color: #4D667C;
+}
+
+.service-box p {
+	color: #777;
+	font-size: 16px;
+	font-weight: bold;
 }

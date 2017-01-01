@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-if ($userLogged)
+if ($user)
 { ?>
   <div id="nav-wrapper">
     <div id="nav" class="navbar-fixed-top navbar navbar-default navbar-inner">
@@ -26,21 +26,21 @@ if ($userLogged)
               <ul class="nav navbar-nav">
                 <li><?php echo $this->html->link('Accueil', array('controller' => 'Users', 'action' => 'index')); ?></li>
                 <li class="dropdown">
-                    <form class="navbar-search" role="search" method="post" action="EventStory/Search/"> 
+                    <form class="navbar-search" role="search" method="post" action="EventStory/Search/">
                     <div class="input-group">
                       <input type="text" class="form-control dropdown-toggle" data-toggle="dropdown" placeholder="Rechercher" name="search" id="search">
                     </div>
                   </form>
                   <ul id="search-res" class="dropdown-menu">
                   </ul>
-                </li> 
+                </li>
               </ul>
             </div>
           </div>
           <div class="col-md-3">
           <!-- RIGHT CONTENT -->
             <ul class="nav navbar-nav navbar-right">
-                <li><?php echo $this->html->link('Créer un évenement', array('controller' => 'Users', 'action' => 'createEvenement')); ?></li>
+                <li><?php echo $this->html->link('Créer un évenement', array('controller' => 'Events', 'action' => 'add')); ?></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span> 
@@ -74,21 +74,13 @@ if ($userLogged)
     </div> <!-- nav -->
   </div> <!-- wrapper -->
 
-<?php 
-} 
+<?php
+}
 else
 {
 ?>
   <div id="nav-wrapper">
     <div id="nav" class="navbar-fixed-top navbar navbar-default navbar-inner">
-
-      <!--<div class="container header">
-        <div class="row">
-          <div class="col-md-12">
-            <img class="headerlogo" alt="" src="./assets/header.png"/>
-          </div>
-        </div>
-      </div> -->
 
       <div class="container colorize">
         <div class="row">

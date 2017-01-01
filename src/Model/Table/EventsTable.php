@@ -55,23 +55,39 @@ class EventsTable extends Table
             ->notEmpty('description');
 
         $validator
-            ->date('added_on')
-            ->requirePresence('added_on', 'create')
-            ->notEmpty('added_on');
+            ->dateTime('date_create')
+            ->requirePresence('date_create', 'create')
+            ->notEmpty('date_create');
 
         $validator
-            ->date('happens_on')
-            ->requirePresence('happens_on', 'create')
-            ->notEmpty('happens_on');
+            ->dateTime('date_happening')
+            ->requirePresence('date_happening', 'create')
+            ->notEmpty('date_happening');
 
         $validator
-            ->requirePresence('city', 'create')
-            ->notEmpty('city');
+            ->dateTime('date_end')
+            ->requirePresence('date_end', 'create')
+            ->notEmpty('date_end');
 
         $validator
-            ->integer('created_by')
-            ->requirePresence('created_by', 'create')
-            ->notEmpty('created_by');
+            ->requirePresence('visibility_type', 'create')
+            ->allowEmpty('visibility_type');
+
+        $validator
+            ->requirePresence('invitation_type', 'create')
+            ->allowEmpty('invitation_type');
+
+        $validator
+            ->integer('creator_user')
+            ->allowEmpty('creator_user');
+
+        $validator
+            ->integer('creator_service')
+            ->allowEmpty('creator_service');
+
+        $validator
+            ->integer('picture')
+            ->allowEmpty('picture');
 
         return $validator;
     }
@@ -88,7 +104,7 @@ class EventsTable extends Table
     public function findTitle(Query $query, array $options)
     {
         $query->where([
-            'Events.title LIKE' => '%'.$options['query'].'%'
+            'Events.title LIKE' => '%'.$options['query'].'%',
         ]);
 
         return $query;

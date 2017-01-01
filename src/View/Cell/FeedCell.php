@@ -17,18 +17,17 @@ class FeedCell extends Cell
      */
     protected $_validCellOptions = [];
 
-
-
     /**
      * Default display method.
      *
      * @return void
      */
-    public function display($user)
+    public function display($user, $mode)
     {
       $this->loadModel('Events');
       $events = $this->Events->find('all');
-      //$cityEvents = $this->Events->find('all');('city', ['city' => $user['city']]);
+      //$cityEvents = $this->Events->find('city', ['city' => $user['city']]);
       $this->set('events', $events);
     }
+
 }

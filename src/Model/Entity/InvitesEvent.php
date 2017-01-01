@@ -4,15 +4,14 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Admin Entity
+ * InvitesEvent Entity
  *
  * @property int $id
- * @property string $first_name
- * @property string $last_name
- * @property string $email
- * @property string $password
+ * @property int $event
+ * @property int $user_inviting
+ * @property int $user_invited
  */
-class Admin extends Entity
+class InvitesEvent extends Entity
 {
 
     /**
@@ -27,14 +26,5 @@ class Admin extends Entity
     protected $_accessible = [
         '*' => true,
         'id' => false
-    ];
-
-    /**
-     * Fields that are excluded from JSON versions of the entity.
-     *
-     * @var array
-     */
-    protected $_hidden = [
-        'password'
     ];
 }

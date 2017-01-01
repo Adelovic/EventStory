@@ -56,6 +56,7 @@ class UsersTable extends Table
             ->notEmpty('first_name');
 
         $validator
+            ->requirePresence('birth', 'create')
             ->date('birth')
             ->notEmpty('birth');
 
@@ -76,7 +77,8 @@ class UsersTable extends Table
             ->notEmpty('score');
 
         $validator
-            ->notEmpty('avatar');
+            ->integer('id_picture')
+            ->notEmpty('id_picture');
 
         return $validator;
     }

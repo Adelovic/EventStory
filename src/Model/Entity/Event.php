@@ -9,10 +9,14 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $title
  * @property string $description
- * @property \Cake\I18n\Time $added_on
- * @property \Cake\I18n\Time $happens_on
- * @property string $city
- * @property int $created_by
+ * @property \Cake\I18n\Time $date_create
+ * @property \Cake\I18n\Time $date_happening
+ * @property \Cake\I18n\Time $date_end
+ * @property string $visibility_type
+ * @property string $invitation_type
+ * @property int $creator_user
+ * @property int $creator_service
+ * @property int $picture
  */
 class Event extends Entity
 {

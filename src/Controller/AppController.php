@@ -81,6 +81,6 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-      $this->set('userLogged', $this->Auth->user());
+      $this->set('user', $this->Auth->user());
     }
 }
