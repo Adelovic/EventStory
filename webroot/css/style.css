@@ -271,7 +271,7 @@ hr.clearbreak {
 
 
 
-.container.body > .row
+.container.body 
 {
 	margin-top: 100px;
 }
@@ -345,4 +345,8 @@ html, body
 	color: #777;
 	font-size: 16px;
 	font-weight: bold;
+}
+
+.modal {
+	margin-top: 100px;
 }

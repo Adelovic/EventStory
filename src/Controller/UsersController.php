@@ -25,6 +25,9 @@ class UsersController extends AppController
     {
       $this->loadModel('InvitesFriend');
       $this->loadModel('InvitesEvent');
+      $this->loadModel('Pictures');
+      $picture = $this->Pictures->get($this->Auth->user()['picture']);
+      $this->set('avatar', $picture);
       $eventInvites = $this->InvitesEvent->find('invite', ['user' => $this->Auth->user()['id']])->toArray();
       $friendshipInvites = $this->InvitesFriend->find('invite', ['user' => $this->Auth->user()['id']])->toArray();
       $invites = ['friends' => $friendshipInvites, 'events' => $eventInvites];

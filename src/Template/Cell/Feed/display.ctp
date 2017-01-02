@@ -6,8 +6,8 @@
 
 <?php foreach ($events as $event) { ?>
       <div class="postbox">
-        <?= $this->Html->image($event['image'], ['alt' => 'Image de ' . $event['title'], 'class' => 'postimg']); ?>
-        <h3 class="posthl"><?= $event['title']?></h3>
+        <?= $this->Html->image('raclette.jpeg', ['alt' => 'Image de ' . $event['title'], 'class' => 'postimg']); ?>
+        <h3 class="posthl"><?= $this->Html->link($event['title'], ['controller' => 'events', 'action' => 'view', $event['id']])?></h3>
         <p><?= $event['description']?></p>
       </div>
       <hr class="articlebreak">

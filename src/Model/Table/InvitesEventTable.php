@@ -83,4 +83,13 @@ class InvitesEventTable extends Table
 
         return $query;
     }
+
+    public function findInvitesEvent(Query $query, array $options)
+    {
+        $query->where([
+          'InvitesEvent.event' => $options['event']
+      ]);
+
+        return $query;
+    }
 }

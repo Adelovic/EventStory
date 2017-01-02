@@ -59,4 +59,15 @@ class FriendshipsTable extends Table
 
         return $validator;
     }
+
+    public function findFriends(Query $query, array $options)
+    {
+        $query->where([
+            'Friendships.user_one' => $options['user']
+        ])->orWhere([
+            'Friendships.user_two' => $options['user']
+        ]);
+
+        return $query;
+    }
 }

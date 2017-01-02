@@ -43,51 +43,50 @@ class EventsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
-
-        $validator
             ->requirePresence('title', 'create')
             ->notEmpty('title');
+
+        $validator
+            ->requirePresence('address', 'create')
+            ->notEmpty('address');
 
         $validator
             ->requirePresence('description', 'create')
             ->notEmpty('description');
 
         $validator
-            ->dateTime('date_create')
-            ->requirePresence('date_create', 'create')
-            ->notEmpty('date_create');
-
-        $validator
-            ->dateTime('date_happening')
+            ->date('date_happening')
             ->requirePresence('date_happening', 'create')
             ->notEmpty('date_happening');
 
         $validator
-            ->dateTime('date_end')
+            ->time('time_happening')
+            ->requirePresence('time_happening', 'create')
+            ->notEmpty('time_happening');
+
+        $validator
+            ->date('date_end')
             ->requirePresence('date_end', 'create')
             ->notEmpty('date_end');
 
         $validator
+            ->time('time_end')
+            ->requirePresence('time_end', 'create')
+            ->notEmpty('time_end');
+
+        $validator
             ->requirePresence('visibility_type', 'create')
-            ->allowEmpty('visibility_type');
+            ->inList('visibility_type', array('public', 'private'));
 
         $validator
             ->requirePresence('invitation_type', 'create')
-            ->allowEmpty('invitation_type');
+            ->inList('invitation_type', array('me', 'everyone'));
 
         $validator
-            ->integer('creator_user')
-            ->allowEmpty('creator_user');
-
-        $validator
-            ->integer('creator_service')
-            ->allowEmpty('creator_service');
-
-        $validator
-            ->integer('picture')
-            ->allowEmpty('picture');
+            ->allowEmpty('picture')
+            ->uploadedFile('picture', array('types' => array('image/jpeg', 'image/png'),
+                                         'optional' => true ),
+                                         'Le fichier doit etre au format PNG ou JPEG et être supérieur à 100Ko et inférieur à 5Mo');
 
         return $validator;
     }

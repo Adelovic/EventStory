@@ -1,13 +1,13 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
-use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Participations Model
+ * Participations Model.
  *
  * @method \App\Model\Entity\Participation get($primaryKey, $options = [])
  * @method \App\Model\Entity\Participation newEntity($data = null, array $options = [])
@@ -19,12 +19,10 @@ use Cake\Validation\Validator;
  */
 class ParticipationsTable extends Table
 {
-
     /**
-     * Initialize method
+     * Initialize method.
      *
-     * @param array $config The configuration for the Table.
-     * @return void
+     * @param array $config The configuration for the Table
      */
     public function initialize(array $config)
     {
@@ -38,7 +36,8 @@ class ParticipationsTable extends Table
     /**
      * Default validation rules.
      *
-     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @param \Cake\Validation\Validator $validator Validator instance
+     *
      * @return \Cake\Validation\Validator
      */
     public function validationDefault(Validator $validator)
@@ -62,11 +61,17 @@ class ParticipationsTable extends Table
 
     public function findEvent(Query $query, array $options)
     {
-        $query->where([
-            'Participations.user' => $options['user']
+        if (isset($options['user'])) {
+            $query->where([
+            'Participations.user' => $options['user'],
         ])->andWhere([
-            'Participations.event' => $options['event']
+            'Participations.event' => $options['event'],
         ]);
+        } else {
+            $query->where([
+              'Participations.event' => $options['event'],
+          ]);
+        }
 
         return $query;
     }

@@ -20,7 +20,7 @@
           <?php
 } else {
     ?>
-            <div class="container body" style="margin-top: 135px"> <!-- a mettre css -->
+            <div class="container body" style="margin-top: 135px">
           <?php
 } ?>
             <?= $this->Flash->render() ?>
