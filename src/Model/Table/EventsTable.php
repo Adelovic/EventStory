@@ -5,7 +5,8 @@ namespace App\Model\Table;
 use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
+use Cake\ORM\TableRegistry;
+use Cake\Datasource\EntityInterface;
 /**
  * Events Model.
  *
@@ -83,9 +84,11 @@ class EventsTable extends Table
             ->inList('invitation_type', array('me', 'everyone'));
 
         $validator
-            ->add('picture', 'file', [
-    'rule' => ['uploadedFile', ['optional' => true]],
-]);
+            ->uploadedFile('picture', array('types' => array('image/jpeg', 'image/png'),
+                                            'minSize' => 102400,
+                                            'maxSize' => 5242880,
+                                            'optional' => true), 
+                'Le fichier doit être au format PNG ou JPEG et être de taille supérieure à 100Ko et inférieure à 5Mo');
 
         return $validator;
     }
@@ -106,6 +109,33 @@ class EventsTable extends Table
         ]);
 
         return $query;
+    }
+
+    public function beforeSave(EntityInterface $entity)
+    {
+
+        // On ne fait ce traitement que si le controller a passé une image à l'entité
+        if (isset($entity->data['entity']['picture_tmp']))
+        {
+             // Récupération du model "Pictures" et des chemins
+            $target_dir = WWW_ROOT . 'img/events_posters/';
+            $imageFileType = pathinfo($entity->data['entity']['picture_tmp']['name'], PATHINFO_EXTENSION);
+            $pictures = TableRegistry::get('Pictures');
+
+            // Création de l'image
+            $event_image = $pictures->newEntity();
+
+            // Ajout de l'extension avant la sauvegarde
+            $event_image->extension = $imageFileType;
+
+            // Sauvegarde et déplacement
+            $result = $pictures->save($event_image);
+            move_uploaded_file($entity->data['entity']['picture_tmp']['tmp_name'], $target_dir . $result->id . '.' . $imageFileType);
+
+            // Modification de l'entité en ajoutant l'id de la picture
+            $entity->data['entity']['picture'] = $result->id;
+        }
+        return TRUE;
     }
 
 }

@@ -34,7 +34,7 @@
 
     <div class="postbox">
       <div class="event">
-        <?php //echo $this->Html->image('events_posters/'.$eventCover['id'].$eventCover['extension'], ['alt' => 'event image', 'class' => 'event']) ?>
+        <?php echo $this->Html->image('events_posters/'. $event_image['id'] . '.' . $event_image['extension'], ['alt' => 'event image', 'class' => 'event']) ?>
       </div>
     </div><br>
     <hr>

@@ -76,6 +76,9 @@ class EventsController extends AppController
             $coordinates = $json['results'][0]['geometry']['location'];
             $this->set('coordinates', $coordinates);
         }
+
+        // Passage des informations de l'image
+        $this->set('event_image', $this->Pictures->get($event['picture']));
     }
 
     /**
@@ -85,28 +88,28 @@ class EventsController extends AppController
      */
     public function add()
     {
-        $event = $this->Events->newEntity();
-        $event->creator_user=$this->Auth->user()['id'];
+        if ($this->request->is('post')) 
+        {
+    
+            // Création de l'entité événement
+            $event = $this->Events->newEntity();
 
-        if ($this->request->is('post')) {
+            // Ajout de l'id du créateur avant sauvegarde
+            $event->creator_user=$this->Auth->user()['id'];
 
-                  // Uplaod etc (à replacer c'est assez sale je trouve)
-                  $target_dir = WWW_ROOT . 'img/events_posters/';
-                  $imageFileType = pathinfo($this->request->data['picture']['name'],PATHINFO_EXTENSION);
-                  $this->loadModel('Pictures');
-                  $eventCover=$this->Pictures->newEntity();
-                  $eventCover->extension=$imageFileType;
-                  $result = $this->Pictures->save($eventCover);
-                  move_uploaded_file($this->request->data['picture']['tmp_name'], $target_dir . $result->id . '.' . $imageFileType);
+            // Si une image est fournie, on passe une variable temporaire au callback beforeSave
+            if ($this->request->data['picture']['size'] != 0)
+            {
+                $event->picture_tmp = $this->request->data['picture'];
+            }
 
-                  
             $event = $this->Events->patchEntity($event, $this->request->data);
-            $event['picture'] = $result->id;
-            if ($this->Events->save($event)) {
-                $this->Flash->success(__('The event has been saved.'));
+            if ($this->Events->save($event)) 
+            {
+                $this->Flash->success(__('L\'événement a été sauvegardé.'));
                 //return $this->redirect(['action' => 'view'], $event['id']);
             } else {
-                $this->Flash->error(__('The event could not be saved. Please, try again.'));
+                $this->Flash->error(__('Erreur de création de l\'événement.'));
             }
         }
     }
