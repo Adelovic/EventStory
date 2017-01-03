@@ -28,8 +28,8 @@ class EventsController extends AppController
         $participates = $this->Participations->exists(['user' => $this->Auth->user()['id'], 'event' => $event['id']]);
 
         // Check si on a le droit d'être sur la page de l'évenemnt, redirige sinon
-        if(!($event['visibility_type'] == 'public' || $participates || $this->InvitesEvent->exists(['user_invited' => $this->Auth->user()['id'], 'event' => $event['id']]))) {
-          $this->redirect($this->referer());
+        if (!($event['visibility_type'] == 'public' || $participates || $this->InvitesEvent->exists(['user_invited' => $this->Auth->user()['id'], 'event' => $event['id']]))) {
+            $this->redirect($this->referer());
         }
 
         $this->loadModel('Users');
@@ -50,14 +50,21 @@ class EventsController extends AppController
         $guests = $queryGuests->select(['count' => $queryGuests->func()->count('*')])->toArray()[0]['count'];
         $this->set('guests', $guests);
 
-        if($event['invitation_type'] == 'everyone' || $creator['id']==$this->Auth->user()['id']) {
-          $this->loadModel('Friendships');
-          $friendsQuery = $this->Friendships->find('friends', ['user' => $this->Auth->user()['id']]);
-          $friends = array();
-          foreach ($friendsQuery as $friend) {
-            $friends[] = $this->Users->get($friend);
-          }
-          $this->set('friends', $friends);
+        if ($event['invitation_type'] == 'everyone' || $creator['id'] == $this->Auth->user()['id']) {
+            $this->loadModel('Friendships');
+            $friendshipsQuery = $this->Friendships->find('friends', ['user' => $this->Auth->user()['id']]);
+            $friends = array();
+            foreach ($friendshipsQuery as $friendship) {
+                if ($friendship['user_one'] == $this->Auth->user()['id']) {
+                    $friend = $this->Users->get($friendship['user_two']);
+                } else {
+                    $friend = $this->Users->get($friendship['user_one']);
+                }
+                if(!$this->Participations->exists(['user' => $friend['id'], 'event' => $event['id']])) {
+                  $friends[] = $friend;
+                }
+            }
+            $this->set('friends', $friends);
         }
 
         // Google maps key
@@ -65,8 +72,7 @@ class EventsController extends AppController
         $address = 'https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($event['address']).'&key='.$key;
         $json = json_decode(file_get_contents($address), true);
 
-        if ($json['status'] !== 'ZERO_RESULTS')
-        {
+        if ($json['status'] !== 'ZERO_RESULTS') {
             $coordinates = $json['results'][0]['geometry']['location'];
             $this->set('coordinates', $coordinates);
         }
@@ -80,18 +86,29 @@ class EventsController extends AppController
     public function add()
     {
         $event = $this->Events->newEntity();
+        $event->creator_user=$this->Auth->user()['id'];
+
         if ($this->request->is('post')) {
+
+                  // Uplaod etc (à replacer c'est assez sale je trouve)
+                  $target_dir = WWW_ROOT . 'img/events_posters/';
+                  $imageFileType = pathinfo($this->request->data['picture']['name'],PATHINFO_EXTENSION);
+                  $this->loadModel('Pictures');
+                  $eventCover=$this->Pictures->newEntity();
+                  $eventCover->extension=$imageFileType;
+                  $result = $this->Pictures->save($eventCover);
+                  move_uploaded_file($this->request->data['picture']['tmp_name'], $target_dir . $result->id . '.' . $imageFileType);
+
+                  
             $event = $this->Events->patchEntity($event, $this->request->data);
+            $event['picture'] = $result->id;
             if ($this->Events->save($event)) {
                 $this->Flash->success(__('The event has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+                //return $this->redirect(['action' => 'view'], $event['id']);
             } else {
                 $this->Flash->error(__('The event could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('event'));
-        $this->set('_serialize', ['event']);
     }
 
     /**

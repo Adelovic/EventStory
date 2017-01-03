@@ -12,6 +12,4 @@
       </div>
       <hr class="articlebreak">
 <?php } ?>
-
-
 	</div>

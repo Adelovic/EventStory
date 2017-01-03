@@ -48,6 +48,7 @@ class InvitesEventController extends AppController
      */
     public function add($event, $user)
     {
+      debug($this->request->data);
       $invitesEvent = $this->InvitesFriend->newEntity();
       $invitesEvent->user_inviting = $this->Auth->user()['id'];
       $invitesEvent->user_invited = $user;

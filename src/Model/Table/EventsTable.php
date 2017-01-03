@@ -83,10 +83,9 @@ class EventsTable extends Table
             ->inList('invitation_type', array('me', 'everyone'));
 
         $validator
-            ->allowEmpty('picture')
-            ->uploadedFile('picture', array('types' => array('image/jpeg', 'image/png'),
-                                         'optional' => true ),
-                                         'Le fichier doit etre au format PNG ou JPEG et être supérieur à 100Ko et inférieur à 5Mo');
+            ->add('picture', 'file', [
+    'rule' => ['uploadedFile', ['optional' => true]],
+]);
 
         return $validator;
     }
@@ -108,4 +107,5 @@ class EventsTable extends Table
 
         return $query;
     }
+
 }

@@ -4,7 +4,7 @@
 
 
           <!-- Titre -->
-          <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+          <form class="well form-horizontal" action=" " method="post"  id="contact_form" enctype="multipart/form-data">
 
             <div class="form-group">
               <label class="col-md-3 control-label">Titre</label>
@@ -61,7 +61,7 @@
                           <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                           </span>
-                          <input name="date_happening" placeholder="JJ/MM/AAAA" type='date' class="form-control" required/>
+                          <input name="date_happening" placeholder="JJ/MM/AAAA" type="date" class="form-control" required/>
                       </div>
                     </div>
                 </div>

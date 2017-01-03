@@ -10,7 +10,7 @@
     <!-- friend modal -->
     <div class="modal fade" id="friendModal" tabindex="-1" role="dialog" aria-labelledby="invite" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <?= $this->Form->create(); ?>
+        <?= $this->Form->create('', ['url' => ['controller' => 'invitesEvent', 'action' => 'add']]); ?>
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -19,14 +19,13 @@
             <h4 class="modal-title" id="invite">Invitez des amis</h4>
           </div>
           <div class="modal-body">
-            <?php foreach ($friends as $friend) { 
-              echo '<label for="1">' . strtoupper($friend->last_name) . ' ' . $friend->first_name . '</label>';
-              echo $this->Form->checkbox('invite', ['value' => '1', 'id' => '1', 'class' => 'pull-right']) . '<br>';
+            <?php foreach ($friends as $friend) {
+              echo '<label for="'.$friend->id.'">' . strtoupper($friend->last_name) . ' ' . $friend->first_name . '</label>';
+              echo $this->Form->checkbox($friend->id, ['value' => $friend->id, 'id' => $friend->id, 'class' => 'pull-right']) . '<br>';
             } ?>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-            <button type="button" class="btn btn-primary">Inviter</button>
+            <?= $this->Form->submit('Inviter', ['class' => 'btn btn-primary']); ?>
           </div>
         </div>
         <?= $this->Form->end(); ?>
@@ -35,9 +34,9 @@
 
     <div class="postbox">
       <div class="event">
-        <?php echo $this->Html->image('raclette.jpeg', ['alt' => 'event image', 'class' => 'event']) ?>
+        <?php //echo $this->Html->image('events_posters/'.$eventCover['id'].$eventCover['extension'], ['alt' => 'event image', 'class' => 'event']) ?>
       </div>
-    </div>
+    </div><br>
     <hr>
     <div class="postbox">
       <div id="map" style="height:200px"></div>
@@ -69,7 +68,7 @@
       <h3>Informations</h3>
       <div class="col-md-6">
         <ul class="list-group">
-          <li class="list-group-item">Le 
+          <li class="list-group-item">Le
             <?= $event->date_happening ?>
           </li>
           <li class="list-group-item">
@@ -97,8 +96,6 @@
         <?= $event->description ?>
       </p><hr>
     </div>
-
-    <hr class="articlebreak">
   </div>
 
   <div class="col-md-4">
