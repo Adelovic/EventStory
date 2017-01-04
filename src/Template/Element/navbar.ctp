@@ -26,7 +26,7 @@ if ($user)
               <ul class="nav navbar-nav">
                 <li><?php echo $this->html->link('Accueil', array('controller' => 'Users', 'action' => 'index')); ?></li>
                 <li class="dropdown">
-                    <form class="navbar-search" role="search" method="post" action="EventStory/Search/">
+                    <form class="navbar-search" role="search" method="post" action="Search/">
                     <div class="input-group">
                       <input type="text" class="form-control dropdown-toggle" data-toggle="dropdown" placeholder="Rechercher" name="search" id="search">
                     </div>

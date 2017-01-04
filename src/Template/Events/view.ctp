@@ -39,7 +39,7 @@
     </div><br>
     <hr>
     <div class="postbox">
-      <div id="map" style="height:200px"></div>
+      <div id="map" style="height:300px"></div>
       <script type="text/javascript">
       var map;
       var marker;
@@ -102,7 +102,7 @@
       <div class="well bs-sidebar" id="sidebar">
         <h1 class="text-center">Organisateur</h1><hr>
         <?= $this->Html->image('avatars/'.$avatar['id'] . '.' . $avatar['extension'], ['alt' => 'image de profil du créateur', 'class' => 'img-circle img-responsive pp']); ?>
-        <h2 class="text-center"><a href="#"><?php echo strtoupper($creator->last_name) . ' ' . $creator->first_name ?></a></h2>
+        <h2 class="text-center"><?= $this->Html->link(strtoupper($creator->last_name) . ' ' . $creator->first_name, ['controller' => 'users', 'action' => 'view', $creator->id]) ?></h2>
         <h4 class="text-center"><?= $creator->description ?></h4>
         <hr>
         <h4 class="text-center">Partenaires :</h4>

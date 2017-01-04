@@ -55,14 +55,13 @@ class FriendshipsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
         $friendship = $this->Friendships->get($id);
         if ($this->Friendships->delete($friendship)) {
-            $this->Flash->success(__('The friendship has been deleted.'));
+            $this->Flash->success(__('Vous n\'êtes à présent plus amis'));
         } else {
-            $this->Flash->error(__('The friendship could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Oups, votre demande n\'a pas pu être prise en compte.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect($this->referer());
     }
 }

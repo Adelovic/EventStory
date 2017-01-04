@@ -1,7 +1,7 @@
 $(function () {
     $("#search").bind('input', function () {
         $.ajax({
-            url: "Search/",
+            url: "/Christopher/EventStory/Search/",
             data: {
                 search: $("#search").val()
             },

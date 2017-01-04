@@ -70,4 +70,15 @@ class FriendshipsTable extends Table
 
         return $query;
     }
+
+    public function findFriendship(Query $query, array $options)
+    {
+        $query->where([
+            'Friendships.user_one' => $options['user_one']
+        ])->andWhere([
+            'Friendships.user_two' => $options['user_two']
+        ]);
+
+        return $query;
+    }
 }

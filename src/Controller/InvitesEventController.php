@@ -46,19 +46,18 @@ class InvitesEventController extends AppController
      *
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
-    public function add($event, $user)
+     //$event, $user
+    public function add($event)
     {
-      debug($this->request->data);
-      $invitesEvent = $this->InvitesFriend->newEntity();
-      $invitesEvent->user_inviting = $this->Auth->user()['id'];
-      $invitesEvent->user_invited = $user;
-      $invitesEvent->event = $event;
-      if ($this->InvitesFriend->save($invitesEvent)) {
-          $this->Flash->success(__('The invites friend has been saved.'));
-      } else {
-          $this->Flash->error(__('The invites friend could not be saved. Please, try again.'));
+      foreach ($this->request->data as $user) {
+        $invitesEvent = $this->InvitesEvent->newEntity();
+        $invitesEvent->user_inviting = $this->Auth->user()['id'];
+        $invitesEvent->user_invited = $user;
+        $invitesEvent->event = $event;
+        if (!($this->InvitesEvent->save($invitesEvent))) {
+            $this->Flash->error(__('Oups, une de vos invitations n\' a pas pu être prise en compte'));
+        }
       }
-
       return $this->redirect($this->referer());
     }
 

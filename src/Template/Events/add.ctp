@@ -1,4 +1,3 @@
-  <div class="container body"><hr>
     <div class="row" >
         <h1>Nouvel évenement</h1>
 
@@ -177,6 +176,6 @@
               </form>
 
               <hr class="articlebreak">
- </div>
+
 
 <?= $this->Html->script('createEvent.js') ?>

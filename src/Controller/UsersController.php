@@ -48,7 +48,20 @@ class UsersController extends AppController
         $this->loadModel('InvitesFriend');
         $alreadyInvited = $this->InvitesFriend->exists(['user_inviting' => $this->Auth->user()['id'], 'user_invited' => $userShown['id']]);
         $waitingForAproval = $this->InvitesFriend->exists(['user_inviting' => $userShown['id'], 'user_invited' => $this->Auth->user()['id']]);
-        if($alreadyInvited) {
+        $this->loadModel('Friendships');
+        $alreadyBefriendedAsOne = $this->Friendships->exists(['user_one' => $this->Auth->user()['id'], 'user_two' => $userShown['id']]);
+        $alreadyBefriendedAsTwo = $this->Friendships->exists(['user_two' => $this->Auth->user()['id'], 'user_one' => $userShown['id']]);
+        $alreadyBefriended = $alreadyBefriendedAsOne || $alreadyBefriendedAsTwo;
+        if($alreadyBefriended) {
+          $friendshipState = 'alreadyBefriended';
+          if($alreadyBefriendedAsOne) {
+            $friendship = $this->Friendships->get('friendship', ['user_one' => $this->Auth->user()['id'], 'user_two' => $userShown['id']])->toArray()[0];
+          } else {
+            $friendship = $this->Friendships->find('friendship', ['user_two' => $this->Auth->user()['id'], 'user_one' => $userShown['id']])->toArray()[0];
+          }
+          $this->set('friendshipId', $friendship['id']);
+        }
+        else if($alreadyInvited) {
           $friendshipState = 'alreadyInvited';
         }
         else if ($waitingForAproval) {
